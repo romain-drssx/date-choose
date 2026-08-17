@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choisis ta date</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-blur blur-one"></div>
+    <div class="bg-blur blur-two"></div>
+
+    <header class="topbar">
+      <div class="brand">♥ DATE AVEC ROMAIN</div>
+      <a class="cv-link" href="CV%20boyfriend%20-%20Romain.pdf" target="_blank" rel="noreferrer">Voir mon CV</a>
+    </header>
+
+    <main class="container">
+      <section class="card puzzle-card" id="puzzleCard">
+        <p class="eyebrow">Mini jeu</p>
+        <h1>Retrouve le mot caché</h1>
+        <p class="subtitle">Tape les lettres pour deviner le mot :</p>
+
+        <div class="word-grid" aria-label="Zone de devinette du mot DATE">
+          <div class="letter-box"><input type="text" maxlength="1" aria-label="Lettre 1" /></div>
+          <div class="letter-box"><input type="text" maxlength="1" aria-label="Lettre 2" /></div>
+          <div class="letter-box"><input type="text" maxlength="1" aria-label="Lettre 3" /></div>
+          <div class="letter-box"><input type="text" maxlength="1" aria-label="Lettre 4" /></div>
+        </div>
+
+        <div class="attempt-history hidden" id="attemptHistory" aria-live="polite"></div>
+
+        <button class="primary-btn" id="checkWordBtn">Vérifier</button>
+      </section>
+
+      <section class="card hidden" id="questionCard">
+        <p class="eyebrow">Question</p>
+        <h2>Accepte tu un date avec moi ?</h2>
+
+        <div class="question-area" id="questionArea">
+          <button class="yes-btn" id="yesBtn">OUI</button>
+          <button class="no-btn" id="noBtn">NON</button>
+        </div>
+      </section>
+
+      <section class="card hidden" id="dateCard">
+        <p class="eyebrow">Planification</p>
+        <h2>Choisis le moment parfait</h2>
+
+        <form id="dateForm">
+          <div class="field-group">
+            <label>Jour</label>
+            <div class="calendar-card" aria-label="Calendrier de sélection de date">
+              <div class="calendar-header">
+                <button type="button" class="nav-btn" id="prevMonthBtn" aria-label="Mois précédent">‹</button>
+                <div id="currentMonthLabel" class="current-month-label"></div>
+                <button type="button" class="nav-btn" id="nextMonthBtn" aria-label="Mois suivant">›</button>
+              </div>
+
+              <div class="calendar-weekdays">
+                <span>Dim</span>
+                <span>Lun</span>
+                <span>Mar</span>
+                <span>Mer</span>
+                <span>Jeu</span>
+                <span>Ven</span>
+                <span>Sam</span>
+              </div>
+
+              <div id="calendarGrid" class="calendar-grid"></div>
+            </div>
+            <input type="hidden" id="selectedDateInput" required />
+            <div id="selectedDateText" class="selected-date-text">Aucune date sélectionnée</div>
+          </div>
+
+          <div class="field-group">
+            <label>Heure</label>
+            <div class="time-picker" aria-label="Sélecteur d'heure au format 24h">
+              <select id="timeHourInput" aria-label="Heure au format 24h" required>
+                <option value="">HH</option>
+                <option value="00">00</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+              </select>
+
+              <span class="time-separator">:</span>
+
+              <select id="timeMinuteInput" aria-label="Minutes" required>
+                <option value="">MM</option>
+                <option value="00">00</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="45">45</option>
+              </select>
+            </div>
+            <input type="hidden" id="timeInput" name="timeInput" />
+          </div>
+
+          <div class="field-group">
+            <label for="activityInput">Activité</label>
+            <select id="activityInput" required>
+              <option value="">Choisir une activité</option>
+              <option value="🧺 Pique nique sur les quais">🧺 Pique nique sur les quais</option>
+              <option value="🏃‍♂️ Activité sportive (course, basket, golf, padel, bras de fer)">🏃‍♂️ Activité sportive (course, basket, golf, padel, bras de fer)</option>
+              <option value="🍕 Cuisiné ensemble (pizza, crêpes, cookies)">🍕 Cuisiné ensemble (pizza, crêpes, cookies)</option>
+              <option value="🌅 Sunset avec les pieds dans le sable">🌅 Sunset avec les pieds dans le sable</option>
+              <option value="🍽️ Resto romantique">🍽️ Resto romantique</option>
+              <option value="🌳 Balade au parc">🌳 Balade au parc</option>
+              <option value="🎬 Cinéma / film">🎬 Cinéma / film</option>
+              <option value="☕ Café cozy">☕ Café cozy</option>
+              <option value="🏠 Soirée à la maison">🏠 Soirée à la maison</option>
+              <option value="🍸 Apéro / cocktails">🍸 Apéro / cocktails</option>
+            </select>
+          </div>
+
+          <button type="submit" class="primary-btn">Valider ma date</button>
+        </form>
+
+        <div class="success-message hidden" id="successMessage"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
