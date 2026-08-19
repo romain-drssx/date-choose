@@ -297,42 +297,14 @@ dateForm.addEventListener('submit', (event) => {
     return;
   }
 
-  const payload = {
-    date: selectedDate.toISOString().split('T')[0],
-    time: timeValue,
-    activity: activityValue
-  };
-
   successMessage.textContent = `C'est parfait ! On se voit le ${formatDateForDisplay(selectedDate)} à ${timeValue} pour ${activityValue}.`;
   successMessage.classList.remove('hidden');
 
-  fetch('/api/date', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  })
-    .then(async (response) => {
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Erreur lors de l’envoi');
-      }
-
-      console.log('Mail envoyé avec succès', data);
-    })
-    .catch((error) => {
-      console.error('Erreur:', error);
-      successMessage.textContent = 'La date est bien enregistrée, mais l’envoi du mail a échoué. Vérifie la configuration email.';
-    })
-    .finally(() => {
-      dateForm.reset();
-      timeInput.value = '';
-      selectedDate = null;
-      updateSelectedDateDisplay();
-      renderCalendar();
-    });
+  dateForm.reset();
+  timeInput.value = '';
+  selectedDate = null;
+  updateSelectedDateDisplay();
+  renderCalendar();
 });
 
 renderAttemptHistory();
